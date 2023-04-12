@@ -34,13 +34,12 @@ class addLead implements RequestHandlerInterface
     {
         $clientId = "40dae47c-c10b-4089-8169-abf705b2a8c8";
         $clientSecret = "IapnWJhgG5B39cRFXYg5lfWTXi2Cvm3BQBvOCaj9nZzDJSF2ZY5FSMyEBVny5Kfc";
-        $redirectUri = "https://bb65-178-215-72-130.ngrok-free.app/addLead";
+        $redirectUri = "https://6911-178-215-72-130.ngrok-free.app/addLead";
         $apiClient = new \AmoCRM\Client\AmoCRMApiClient($clientId, $clientSecret, $redirectUri);
 
         if (isset($_GET['referer'])) {
             $apiClient->setAccountBaseDomain($_GET['referer']);
         }
-        
         
         if (!isset($_GET['code'])) {
             $_SESSION['name'] = $_GET['name'];
@@ -68,11 +67,11 @@ class addLead implements RequestHandlerInterface
             die((string)$e);
         }
         $apiClient->setAccessToken($accessToken);
+
         if (isset($_GET['referer'])) {
             $apiClient->setAccountBaseDomain($_GET['referer']);
         }
         $leadsService = $apiClient->leads();
-
         $contactCollection = new ContactsCollection();
         $contact = new ContactModel();
         $customFields = new CustomFieldsValuesCollection();
@@ -98,7 +97,6 @@ class addLead implements RequestHandlerInterface
         $customFields->add($emailField);
         $contact->setCustomFieldsValues($customFields);
         $contact->setName($_SESSION['name']);
-
         $contactCollection->add($contact);
         $lead = new LeadModel();
         $lead
@@ -111,7 +109,10 @@ class addLead implements RequestHandlerInterface
         } catch (AmoCRMApiException $e) {
             exit($e);
         }
-        $a = implode(', ', $_POST);
+        unset($_SESSION['name']);
+        unset($_SESSION['price']);
+        unset($_SESSION['mail']);
+        unset($_SESSION['number']);
         
         return new RedirectResponse("/amo");
     }

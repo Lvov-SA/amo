@@ -24,8 +24,6 @@ class Amo implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
-        // Do some work...
-        // Render and return a response:
         return new HtmlResponse(
             "<form action='/addLead' method='GET'>
             <input type = 'text' name = 'name' placeholder = 'имя'> <br> 
@@ -33,8 +31,7 @@ class Amo implements RequestHandlerInterface
             <input type = 'text' name = 'number' placeholder = 'телефон'> <br>
             <input type = 'text' name = 'price' placeholder = 'цена'> <br>
             <input type = 'submit' value = 'add'><br>
-            </form>
-            "
+            </form>"
         );
     }
 }
