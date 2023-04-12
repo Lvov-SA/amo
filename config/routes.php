@@ -8,5 +8,5 @@ use Psr\Container\ContainerInterface;
 
 return static function (Application $app, MiddlewareFactory $factory, ContainerInterface $container): void {
     $app->get('/amo', App\Handler\Amo::class);
-    $app->get('/addLead', App\Handler\addLead::class);
+    $app->get('/addLead', App\Handler\AddLead::class);
 };

@@ -18,16 +18,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Mezzio\Template\TemplateRendererInterface;
 
-class addLead implements RequestHandlerInterface
+class AddLead implements RequestHandlerInterface
 {
-    /**
-     * @var TemplateRendererInterface
-     */
-    private $renderer;
 
-    public function __construct(TemplateRendererInterface $renderer)
+    public function __construct()
     {
-        $this->renderer = $renderer;
     }
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
